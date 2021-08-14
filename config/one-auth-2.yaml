@@ -1,0 +1,41 @@
+# Single-node Teleport cluster called "one" (runs all 3 roles: proxy, auth and node)
+teleport:
+  nodename: one-auth-2
+  log:
+    output: stderr
+    severity: DEBUG
+
+  data_dir: /Users/nklaassen/src/teletest/data/one-auth-2
+  storage:
+    path: /Users/nklaassen/src/teletest/backend
+    type: dir
+      #type: etcd
+      #peers:
+      #- "https://etcd:2379"
+      #tls_cert_file: /Users/nklaassen/src/teletest/certs/one/cert.pem
+      #tls_key_file: /Users/nklaassen/src/teletest/certs/one/key.pem
+      #tls_ca_file: /Users/nklaassen/src/teletest/certs/minica.pem
+      #prefix: /teleport/
+
+auth_service:
+  enabled: yes
+
+  cluster_name: one
+
+  authentication:
+    type: local
+    second_factor: off
+
+  tokens:
+  - node,proxy,app:foo
+
+  listen_addr: 0.0.0.0:5025
+
+  license_file: /Users/nklaassen/src/teletest/config/license.pem
+
+ssh_service:
+  enabled: yes
+  listen_addr: 0.0.0.0:5022
+
+proxy_service:
+  enabled: no

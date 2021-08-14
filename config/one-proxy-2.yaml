@@ -1,0 +1,32 @@
+# Single-node Teleport cluster called "one" (runs all 3 roles: proxy, auth and node)
+teleport:
+  nodename: one-proxy-2
+  log:
+    output: stderr
+    severity: DEBUG
+
+  data_dir: ./data/one-proxy-2
+
+  auth_token: "foo"
+
+  auth_servers:
+  - one-auth:3025
+
+auth_service:
+  enabled: no
+
+ssh_service:
+  enabled: no
+
+proxy_service:
+  enabled: yes
+  public_addr: 
+  - 'one:3080'
+
+  listen_addr: "one:5023"
+  tunnel_listen_addr: "one:5024"
+  web_listen_addr: "one:5080"
+
+  https_keypairs:
+  - key_file: ./certs/one/key.pem
+    cert_file: ./certs/one/cert.pem

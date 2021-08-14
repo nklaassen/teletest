@@ -1,0 +1,26 @@
+# Single-node Teleport cluster called "one" (runs all 3 roles: proxy, auth and node)
+teleport:
+  nodename: one-app
+  log:
+    output: stderr
+    severity: DEBUG
+
+  data_dir: ./data/one-app
+
+  auth_token: "foo"
+
+  auth_servers:
+  - one-auth:3080
+
+auth_service:
+  enabled: no
+
+ssh_service:
+  enabled: no
+
+proxy_service:
+  enabled: no
+
+app_service:
+  enabled: yes
+  app-uri: http://127.0.0.1:8080
