@@ -27,11 +27,17 @@ auth_service:
     second_factor: off
 
   tokens:
-  - node,proxy,app:foo
+  - node,proxy,app,kube:foo
 
   listen_addr: 0.0.0.0:4025
 
   license_file: /Users/nklaassen/src/teletest/config/license.pem
+
+  ca_key_params:
+    pkcs11:
+      module_path: /usr/local/Cellar/p11-kit/0.23.22/lib/pkcs11/yubihsm_pkcs11.dylib
+      slot_number: 0
+      pin: "0001password"
 
 ssh_service:
   enabled: yes

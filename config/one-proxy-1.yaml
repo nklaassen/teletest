@@ -26,6 +26,7 @@ proxy_service:
   listen_addr: "one:4023"
   tunnel_listen_addr: "one:4024"
   web_listen_addr: "one:4080"
+  kube_listen_addr: 127.0.0.1:3026
 
   https_keypairs:
   - key_file: ./certs/one/key.pem

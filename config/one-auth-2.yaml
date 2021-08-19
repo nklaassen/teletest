@@ -27,11 +27,17 @@ auth_service:
     second_factor: off
 
   tokens:
-  - node,proxy,app:foo
+  - node,proxy,app,kube:foo
 
   listen_addr: 0.0.0.0:5025
 
   license_file: /Users/nklaassen/src/teletest/config/license.pem
+
+  ca_key_params:
+    pkcs11:
+      module_path: "/usr/local/lib/softhsm/libsofthsm2.so"
+      token_label: "test2"
+      pin: "password"
 
 ssh_service:
   enabled: yes
