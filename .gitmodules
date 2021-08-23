@@ -1,0 +1,6 @@
+[submodule "6.0"]
+	path = 6.0
+	url = git@github.com:gravitational/teleport
+[submodule "6.2"]
+	path = 6.2
+	url = git@github.com:gravitational/teleport
