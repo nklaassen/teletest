@@ -35,5 +35,11 @@ two-node-iot:
 nic:
 	./current/tctl -c config/one-auth.yaml users add nic --roles editor,access --logins nklaassen
 
+terraform-user: ./config/terraform.yaml
+	./current/tctl -c config/one-auth.yaml create -f ./config/terraform.yaml
+
+gen-terraform-certs: terraform-user
+	./current/tctl -c config/one-auth.yaml auth sign --format tls --ttl 2400h --user terraform --out terraform/auth
+
 clean:
 	rm -rf data/* backend/* tokens/*

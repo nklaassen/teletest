@@ -2,5 +2,11 @@ data/
 backend/
 secret/
 certs/
+terraform.tfstate
+terraform.tfstate.backup
+.terraform*
+auth.cas
+auth.crt
+auth.key
 .DS_Store
 *.swp
