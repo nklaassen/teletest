@@ -1,0 +1,24 @@
+teleport:
+  nodename: two-node
+  log:
+    output: stderr
+    severity: DEBUG
+
+  data_dir: ./data/two-node
+
+  auth_token: "foo"
+
+  auth_servers:
+  - two:5025
+
+auth_service:
+  enabled: no
+
+proxy_service:
+  enabled: no
+
+ssh_service:
+  enabled: yes
+  listen_addr: 127.0.0.1:6022
+  labels:
+    owner: db-admins

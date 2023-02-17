@@ -1,0 +1,32 @@
+teleport:
+  nodename: two-auth
+  log:
+    output: stderr
+    severity: DEBUG
+
+  data_dir: /Users/nklaassen/src/teletest/data/two-auth
+  storage:
+    path: /Users/nklaassen/src/teletest/backend/two
+    type: dir
+
+auth_service:
+  enabled: yes
+
+  cluster_name: cluster-two
+
+  authentication:
+    type: local
+    second_factor: off
+
+  tokens:
+  - node,proxy,app,kube,db:foo
+
+  listen_addr: 127.0.0.1:5025
+
+  license_file: ../../config/license.pem
+
+ssh_service:
+  enabled: no
+
+proxy_service:
+  enabled: no

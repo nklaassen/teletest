@@ -1,8 +1,6 @@
-license*
-etcd/test0
-data/*
-backend/*
-tokens/*
-env.sh
+data/
+backend/
+secret/
+certs/
 .DS_Store
 *.swp

@@ -1,0 +1,23 @@
+version: v3
+teleport:
+  nodename: one-node-1
+  log:
+    output: stderr
+    severity: DEBUG
+
+  data_dir: ./data/one-node-1
+
+  auth_token: foo
+
+  auth_server: one:3025
+
+auth_service:
+  enabled: no
+
+proxy_service:
+  enabled: no
+
+ssh_service:
+  enabled: yes
+  listen_addr: 127.0.0.1:3022
+  public_addr: 127.0.0.1:3022

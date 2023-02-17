@@ -1,0 +1,12 @@
+kind: role
+version: v5
+metadata:
+  name: node-access
+spec:
+  allow:
+    node_labels:
+      owner:
+        - everyone
+        - '{{external.groups}}'
+    logins:
+      - '{{external.logins}}'

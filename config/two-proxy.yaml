@@ -1,0 +1,34 @@
+teleport:
+  nodename: two-proxy
+  log:
+    output: stderr
+    severity: DEBUG
+
+  data_dir: ./data/two-proxy
+
+  auth_servers:
+  - two:5025
+
+  auth_token: "foo"
+
+auth_service:
+  enabled: no
+
+ssh_service:
+  enabled: no
+
+proxy_service:
+  enabled: yes
+
+  web_listen_addr: two:5080
+  public_addr: two:5080
+
+  listen_addr: two:5023
+  ssh_public_addr: two:5023
+
+  tunnel_listen_addr: two:5024
+  tunnel_public_addr: two:5024
+
+  https_keypairs:
+  - key_file: ./certs/two/key.pem
+    cert_file: ./certs/two/cert.pem

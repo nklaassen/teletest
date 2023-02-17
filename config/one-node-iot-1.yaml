@@ -1,0 +1,21 @@
+version: v3
+teleport:
+  nodename: one-node-iot-1
+  log:
+    output: stderr
+    severity: DEBUG
+
+  data_dir: ./data/one-node-iot-1
+
+  auth_token: "foo"
+
+  proxy_server: https://one:3080
+
+auth_service:
+  enabled: no
+
+proxy_service:
+  enabled: no
+
+ssh_service:
+  enabled: yes

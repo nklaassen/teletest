@@ -1,0 +1,12 @@
+# requester.yaml
+kind: role
+version: v5
+metadata:
+  name: requester
+spec:
+  allow:
+    request:
+      roles:
+        - access
+      search_as_roles:
+        - access

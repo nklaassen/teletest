@@ -1,4 +1,5 @@
-# Single-node Teleport cluster called "one" (runs all 3 roles: proxy, auth and node)
+---
+version: v3
 teleport:
   nodename: one-auth-1
   log:
@@ -7,41 +8,39 @@ teleport:
 
   data_dir: /Users/nklaassen/src/teletest/data/one-auth-1
   storage:
-    path: /Users/nklaassen/src/teletest/backend
-    type: dir
-      #type: etcd
-      #peers:
-      #- "https://etcd:2379"
-      #tls_cert_file: /Users/nklaassen/src/teletest/certs/one/cert.pem
-      #tls_key_file: /Users/nklaassen/src/teletest/certs/one/key.pem
-      #tls_ca_file: /Users/nklaassen/src/teletest/certs/minica.pem
-      #prefix: /teleport/
+    type: etcd
+    peers:         ["https://127.0.0.1:2379"]
+    prefix:        "teletest"
+    tls_key_file:  "/Users/nklaassen/src/teleport/examples/etcd/certs/client-key.pem"
+    tls_cert_file: "/Users/nklaassen/src/teleport/examples/etcd/certs/client-cert.pem"
+    tls_ca_file:   "/Users/nklaassen/src/teleport/examples/etcd/certs/ca-cert.pem"
 
 auth_service:
-  enabled: yes
+  enabled: true
 
-  cluster_name: one
+  cluster_name: cluster-one
 
   authentication:
     type: local
-    second_factor: off
+    second_factor: false
 
   tokens:
-  - node,proxy,app,kube:foo
+    - node,proxy,app,kube,trusted_cluster,db,windows_desktop:foo
 
-  listen_addr: 0.0.0.0:4025
+  public_addr: one:3025
+  listen_addr: 127.0.0.1:6025
 
   license_file: /Users/nklaassen/src/teletest/config/license.pem
 
+  proxy_listener_mode: multiplex
+
   ca_key_params:
-    pkcs11:
-      module_path: /usr/local/Cellar/p11-kit/0.23.22/lib/pkcs11/yubihsm_pkcs11.dylib
-      slot_number: 0
-      pin: "0001password"
+    gcp_kms:
+      keyring: "projects/teleport-dev-320620/locations/us-west1/keyRings/nic-hsm-test"
+      protection_level: SOFTWARE
 
 ssh_service:
-  enabled: yes
-  listen_addr: 0.0.0.0:4022
+  enabled: false
 
 proxy_service:
-  enabled: no
+  enabled: false

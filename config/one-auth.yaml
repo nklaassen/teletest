@@ -1,0 +1,37 @@
+---
+teleport:
+  nodename: one-auth
+  log:
+    output: stderr
+    severity: DEBUG
+
+  data_dir: /Users/nklaassen/src/teletest/data/one-auth
+  storage:
+    path: /Users/nklaassen/src/teletest/backend/one
+    type: dir
+
+auth_service:
+  enabled: true
+
+  cluster_name: cluster-one
+
+  authentication:
+    type: github
+    second_factor: optional
+    webauthn:
+      rp_id: one
+
+  tokens:
+    - node,proxy,app,kube,trusted_cluster,db,windows_desktop:foo
+
+  public_addr: one:4025
+  listen_addr: 127.0.0.1:4025
+
+  license_file: /Users/nklaassen/src/teletest/config/license.pem
+
+ssh_service:
+  enabled: true
+  listen_addr: 127.0.0.1:4000
+
+proxy_service:
+  enabled: false

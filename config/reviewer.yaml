@@ -1,0 +1,12 @@
+# reviewer.yaml
+kind: role
+version: v5
+metadata:
+  name: reviewer
+spec:
+  allow:
+    review_requests:
+      preview_as_roles:
+        - access
+      roles:
+        - access
