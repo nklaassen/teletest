@@ -1,5 +1,6 @@
+version: v3
 teleport:
-  nodename: test/one-node
+  nodename: one-node
   log:
     output: stderr
     severity: DEBUG
@@ -8,8 +9,7 @@ teleport:
 
   auth_token: foo
 
-  auth_servers:
-    - one:4025
+  auth_server: one:4025
 
 auth_service:
   enabled: no
@@ -22,7 +22,7 @@ ssh_service:
   listen_addr: 127.0.0.1:3022
   public_addr: 127.0.0.1:3022
   labels:
-    test: test
+    env: test
   commands:
   - name: date
     command: [date]

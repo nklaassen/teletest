@@ -1,3 +1,4 @@
+version: v3
 teleport:
   nodename: one-node-iot
   log:
@@ -11,8 +12,7 @@ teleport:
     #  method: iam
     #  token_name: iam-token
 
-  auth_servers:
-    - https://one:4080
+  proxy_server: https://one:4080
 
 auth_service:
   enabled: no
@@ -25,6 +25,15 @@ ssh_service:
   labels:
     owner: db-admins
     test: test
+    env: prod
+
+  commands:
+  - name: date
+    command: ["date"]
+    period: 1m
+  - name: hostname
+    command: [hostname]
+    period: 1m
 
 app_service:
   enabled: yes
@@ -34,7 +43,7 @@ app_service:
       uri: "http://localhost:80"
 
 kubernetes_service:
-  enabled: yes
+  enabled: no
   kubeconfig_file: /Users/nklaassen/src/teletest/kube/config
 
 db_service:

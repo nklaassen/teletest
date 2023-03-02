@@ -27,7 +27,7 @@ auth_service:
   public_addr: one:4025
   listen_addr: 127.0.0.1:4025
 
-  license_file: /Users/nklaassen/src/teletest/config/license.pem
+  license_file: /Users/nklaassen/src/teletest/secret/license.pem
 
 ssh_service:
   enabled: true

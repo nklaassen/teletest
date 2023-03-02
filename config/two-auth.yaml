@@ -23,7 +23,7 @@ auth_service:
 
   listen_addr: 127.0.0.1:5025
 
-  license_file: ../../config/license.pem
+  license_file: /Users/nklaassen/src/teletest/secret/license.pem
 
 ssh_service:
   enabled: no

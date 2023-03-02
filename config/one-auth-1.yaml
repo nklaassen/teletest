@@ -30,7 +30,7 @@ auth_service:
   public_addr: one:3025
   listen_addr: 127.0.0.1:6025
 
-  license_file: /Users/nklaassen/src/teletest/config/license.pem
+  license_file: /Users/nklaassen/src/teletest/secret/license.pem
 
   proxy_listener_mode: multiplex
 

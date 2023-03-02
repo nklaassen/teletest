@@ -1,0 +1,6 @@
+kind: role
+version: v6
+metadata:
+  description: Empty role granting no access
+  name: empty
+spec:
