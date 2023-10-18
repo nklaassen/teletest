@@ -1,4 +1,5 @@
 ---
+version: v3
 teleport:
   nodename: one-auth
   log:
@@ -6,18 +7,20 @@ teleport:
     severity: DEBUG
 
   data_dir: /Users/nklaassen/src/teletest/data/one-auth
-  storage:
-    path: /Users/nklaassen/src/teletest/backend/one
-    type: dir
+    #storage:
+    #path: /Users/nklaassen/src/teletest/backend/one
+    #type: dir
 
 auth_service:
   enabled: true
 
+  proxy_listener_mode: multiplex
+
   cluster_name: cluster-one
 
   authentication:
-    type: github
-    second_factor: optional
+    type: local
+    second_factor: off
     webauthn:
       rp_id: one
 
@@ -29,9 +32,31 @@ auth_service:
 
   license_file: /Users/nklaassen/src/teletest/secret/license.pem
 
+  ca_key_params:
+    # gcp_kms:
+      # keyring: projects/teleport-dev-320620/locations/us-west1/keyRings/nic-testplan-13
+      # protection_level: "SOFTWARE"
+      #pkcs11:
+      #  module_path: /usr/local/lib/pkcs11/yubihsm_pkcs11.dylib
+      #  # slot_number should be set to 0 for YubiHSM2
+      #  slot_number: 0
+      #  # pin should be the (hex) slot number of your Authentication Key,
+      #  # concatenated with the password
+      #  pin: "aac5hunter22"
+      #  # pin_path can optionally be used to read the pin from a file
+      #  # pin_path: /path/to/pin_file
+
 ssh_service:
   enabled: true
   listen_addr: 127.0.0.1:4000
+  public_addr: one:4000
 
 proxy_service:
   enabled: false
+
+  web_listen_addr: 0.0.0.0:6080
+  public_addr: one:6080
+
+  https_keypairs:
+    - key_file: ./certs/_.one/key.pem
+      cert_file: ./certs/_.one/cert.pem

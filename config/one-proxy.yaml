@@ -1,7 +1,7 @@
 ---
 version: v2
 teleport:
-  # nodename: one-proxy
+  nodename: one-proxy
   log:
     output: stderr
     severity: DEBUG
@@ -25,11 +25,11 @@ proxy_service:
   web_listen_addr: 0.0.0.0:4080
   public_addr: one:4080
 
-  listen_addr: one:4023
-  ssh_public_addr: one:4023
+    # listen_addr: one:4023
+    # ssh_public_addr: one:4023
 
-  tunnel_listen_addr: one:4024
-  tunnel_public_addr: one:4024
+    # tunnel_listen_addr: one:4024
+    # tunnel_public_addr: one:4024
 
   https_keypairs:
     - key_file: ./certs/one/key.pem

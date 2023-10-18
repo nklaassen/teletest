@@ -4,11 +4,8 @@ teleport:
   log:
     output: stderr
     severity: DEBUG
-
   data_dir: ./data/one-node
-
   auth_token: foo
-
   auth_server: one:4025
 
 auth_service:
@@ -22,8 +19,10 @@ ssh_service:
   listen_addr: 127.0.0.1:3022
   public_addr: 127.0.0.1:3022
   labels:
-    env: test
+    region: "us-east-1"
+    environment: "staging"
+    ctype: "beta"
   commands:
-  - name: date
-    command: [date]
-    period: 5s
+  - name: piped
+    command: ['/bin/bash', '-c', 'echo hello | sed "s/h/H/"']
+    period: 5m

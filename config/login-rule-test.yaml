@@ -1,0 +1,6 @@
+kind: login_rule
+version: v1
+metadata:
+  name: test
+spec:
+  traits_expression: external.put("test", set("test")).put("test1", email.local(set("nic@goteleport.com")))

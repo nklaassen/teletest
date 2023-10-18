@@ -1,3 +1,4 @@
+version: v3
 teleport:
   nodename: two-auth
   log:
@@ -26,7 +27,15 @@ auth_service:
   license_file: /Users/nklaassen/src/teletest/secret/license.pem
 
 ssh_service:
-  enabled: no
+  enabled: yes
+  listen_addr: 127.0.0.1:4001
 
 proxy_service:
-  enabled: no
+  enabled: yes
+
+  web_listen_addr: two:5080
+  public_addr: two:5080
+
+  https_keypairs:
+  - key_file: ./certs/two/key.pem
+    cert_file: ./certs/two/cert.pem

@@ -1,0 +1,34 @@
+kind: role
+version: v5
+metadata:
+  name: tester
+spec:
+  allow:
+    node_labels_expression: |
+      regexp.match(labels["region"], "us-east-*") &&
+      (labels["environment"] == "development" || labels["environment"] == "staging") &&
+      labels["ctype"] != "beta"
+    db_labels:
+      '*': '*'
+    db_users:
+      - '*'
+    db_names:
+      - '*'
+    logins: ['{{internal.logins}}']
+    request:
+      search_as_roles: [access]
+---
+kind: user
+version: v2
+metadata:
+  name: tester
+spec:
+  roles: [tester,access,editor,auditor]
+  traits:
+    logins: [nklaassen, ec2-user]
+    email: [tester@goteleport.com]
+    allow-env: [test]
+    team: [acme]
+  local_auth:
+    password_hash: >
+      JDJhJDEwJEVUZFk0cS9HV3BvU0tYV0FRQVhHbk9OU3IualE3Q3NIbVRTenlvWWl3RjhieWIwdGxldFFL

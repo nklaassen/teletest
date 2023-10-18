@@ -1,0 +1,9 @@
+kind: role
+metadata:
+  name: loginrule-manager
+spec:
+  allow:
+    rules:
+      - resources: [login_rule]
+        verbs: [list, read, create, update, delete]
+version: v6

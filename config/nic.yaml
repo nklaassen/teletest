@@ -1,0 +1,10 @@
+kind: user
+version: v2
+metadata:
+  name: nic
+spec:
+  roles: [access,editor,auditor]
+  traits:
+    logins: [nklaassen, ec2-user, root, nic, ubuntu]
+  local_auth:
+    password_hash: JDJhJDEwJEVUZFk0cS9HV3BvU0tYV0FRQVhHbk9OU3IualE3Q3NIbVRTenlvWWl3RjhieWIwdGxldFFL

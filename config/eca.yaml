@@ -1,0 +1,12 @@
+kind: external_cloud_audit
+version: v1
+metadata:
+  name: external-cloud-audit-draft
+spec:
+  sessions_recordings_uri: s3://nic-byob/sess-rec-v2/
+  athena_workgroup: primary
+  integration_name: byob-test
+  glue_database: nic_byob
+  glue_table: nic_byob_table
+  audit_events_long_term_uri: "s3://nic-byob/events"
+  athena_results_uri: "s3://nic-byob/results"

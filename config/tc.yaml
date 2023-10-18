@@ -5,7 +5,6 @@ metadata:
 spec:
   enabled: true
   token: foo
-  tunnel_addr: one:4024
   web_proxy_addr: one:4080
   role_map:
     - remote: "^(.*)$"

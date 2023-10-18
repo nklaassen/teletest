@@ -25,7 +25,7 @@ ssh_service:
   labels:
     owner: db-admins
     test: test
-    env: prod
+    env: test
 
   commands:
   - name: date
@@ -40,17 +40,18 @@ app_service:
   debug_app: true
   apps:
     - name: "httpbin"
-      uri: "http://localhost:80"
+      uri: "http://127.0.0.1:3000"
 
 kubernetes_service:
-  enabled: no
+  enabled: yes
   kubeconfig_file: /Users/nklaassen/src/teletest/kube/config
 
 db_service:
   enabled: yes
-  resources:
-    - labels:
-        "*": "*"
+  databases:
+    - name: postgres
+      protocol: postgres
+      uri: localhost:5432
 
 windows_desktop_service:
   enabled: no

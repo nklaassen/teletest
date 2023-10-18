@@ -1,0 +1,23 @@
+# my_rule.yaml
+kind: login_rule
+version: v1
+metadata:
+  # Each Login Rule must have a unique name within the cluster.
+  name: my_rule
+
+  # expires is optional and usually should not be set for deployed login
+  # rules, but it can be useful to set an expiry a short time in the future
+  # while testing new Login Rules to prevent potentially locking yourself out of
+  # your Teleport cluster.
+  # expires: "2023-01-31T00:00:00-00:00"
+spec:
+  # priority orders the evaluation of Login Rules if multiple are present in the
+  # cluster, lower priorities are evaluated first.
+  priority: 0
+
+  # traits_expression is a predicate expression which will be evaluated to
+  # determine the final traits for each SSO user during login.
+  #
+  # This example expression sets the "logins" trait to the incoming "username"
+  # trait converted to lowercase.
+  traits_expression: 'external.put( "logins", strings.lower(external["username"]))'

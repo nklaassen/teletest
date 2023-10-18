@@ -1,0 +1,11 @@
+# teleport_kms_role.yaml
+title: teleport_kms_role
+description: 'Teleport permissions for using KMS keys'
+stage: ALPHA
+includedPermissions:
+- cloudkms.cryptoKeys.create
+- cloudkms.cryptoKeys.list
+- cloudkms.cryptoKeyVersions.create
+- cloudkms.cryptoKeyVersions.destroy
+- cloudkms.cryptoKeyVersions.useToSign
+- cloudkms.cryptoKeyVersions.viewPublicKey
