@@ -1,8 +1,9 @@
-auth1: export SOFTHSM2_TOKEN = test1
-auth1:
-	./current/teleport start --diag-addr 127.0.0.1:3001 -c config/one-auth.yaml
+auth:
+	./current/teleport start --diag-addr 127.0.0.1:3000 -c config/one-auth.yaml
 
-auth2: export SOFTHSM2_TOKEN = test2
+auth1:
+	./current/teleport start --diag-addr 127.0.0.1:3001 -c config/one-auth-1.yaml
+
 auth2:
 	./current/teleport start --diag-addr 127.0.0.1:3002 -c config/one-auth-2.yaml
 
@@ -13,6 +14,9 @@ init-tokens:
 
 proxy:
 	./current/teleport start -c config/one-proxy.yaml
+
+proxy1:
+	./current/teleport start -c config/one-proxy-1.yaml
 
 node:
 	./current/teleport start -c config/one-node.yaml
@@ -34,7 +38,7 @@ two-node-iot:
 
 .PHONY: nic
 nic:
-	./current/tctl -c config/one-auth.yaml users add nic --roles editor,access,auditor --logins nklaassen,ec2-user,root
+	./current/tctl -c config/one-auth.yaml create -f config/nic.yaml
 
 terraform-user: ./config/terraform.yaml
 	./current/tctl -c config/one-auth.yaml create -f ./config/terraform.yaml

@@ -6,14 +6,14 @@ teleport:
     output: stderr
     severity: DEBUG
 
-  data_dir: /Users/nklaassen/src/teletest/data/one-auth-2
+  data_dir: /Users/nic/src/teletest/data/one-auth-2
   storage:
     type: etcd
     peers:         ["https://127.0.0.1:2379"]
     prefix:        "teletest"
-    tls_key_file:  "/Users/nklaassen/src/teleport/examples/etcd/certs/client-key.pem"
-    tls_cert_file: "/Users/nklaassen/src/teleport/examples/etcd/certs/client-cert.pem"
-    tls_ca_file:   "/Users/nklaassen/src/teleport/examples/etcd/certs/ca-cert.pem"
+    tls_key_file:  "/Users/nic/src/teleport/examples/etcd/certs/client-key.pem"
+    tls_cert_file: "/Users/nic/src/teleport/examples/etcd/certs/client-cert.pem"
+    tls_ca_file:   "/Users/nic/src/teleport/examples/etcd/certs/ca-cert.pem"
 
 auth_service:
   enabled: true
@@ -27,17 +27,24 @@ auth_service:
   tokens:
     - node,proxy,app,kube,trusted_cluster,db,windows_desktop:foo
 
-  public_addr: one:6025
-  listen_addr: 127.0.0.1:7025
+  public_addr: one:3025
+  listen_addr: 127.0.0.1:5025
 
-  license_file: /Users/nklaassen/src/teletest/config/license.pem
+  license_file: /Users/nic/src/teletest/secret/license.pem
 
   proxy_listener_mode: multiplex
 
   ca_key_params:
-    gcp_kms:
-      keyring: "projects/teleport-dev-320620/locations/us-west1/keyRings/nic-hsm-test"
-      protection_level: SOFTWARE
+    # gcp_kms:
+    #   keyring: "projects/teleport-dev-320620/locations/us-west3/keyRings/nic-testplan-15"
+    #   protection_level: SOFTWARE
+    # aws_kms:
+    #   account: "278576220453"
+    #   region: us-west-2
+    # pkcs11:
+    #   module_path: /usr/local/lib/pkcs11/yubihsm_pkcs11.dylib
+    #   slot_number: 0
+    #   pin: "0001password"
 
 ssh_service:
   enabled: false

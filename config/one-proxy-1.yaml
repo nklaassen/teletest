@@ -6,10 +6,8 @@ teleport:
     output: stderr
     severity: DEBUG
 
-  data_dir: /Users/nklaassen/src/teletest/data/one-proxy-1
-
+  data_dir: ./data/one-proxy-1
   auth_server: one:3025
-
   auth_token: "foo"
 
 auth_service:
@@ -21,9 +19,9 @@ ssh_service:
 proxy_service:
   enabled: true
 
-  public_addr: one:3080
   web_listen_addr: 0.0.0.0:4080
+  public_addr: one:3080
 
   https_keypairs:
-    - key_file: /Users/nklaassen/src/teletest/certs/one/key.pem
-      cert_file: /Users/nklaassen/src/teletest/certs/one/cert.pem
+    - key_file: ./certs/_.one/key.pem
+      cert_file: ./certs/_.one/cert.pem
